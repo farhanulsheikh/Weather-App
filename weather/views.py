@@ -16,9 +16,9 @@ def weather_page(request):
     
     if request.method == "POST":
         city = request.POST['city']
-        API_key = ''
+        WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
         
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={API_key}"
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={WEATHER_API_KEY}"
         
         response = requests.get(url).json()
         if response['cod'] == 200:
@@ -49,7 +49,7 @@ def weather_page(request):
                     lat = str(response['coord']['lat'])
                     lon = str(response['coord']['lon'])
                     
-                    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=hourly,current,minutely,alerts&units=metric&appid={API_key}'
+                    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=hourly,current,minutely,alerts&units=metric&appid={WEATHER_API_KEY}'
                     response2 = requests.get(url2).json()
 
                     context2={
