@@ -1,0 +1,35 @@
+
+{% extends "weather/layout.html" %}
+
+{% block content %}
+<div class="jumbotron  text-white  " style="background:rgba(0,0,0, 0.8); padding-left: 20%; padding-right: 20%; border-radius: 15px">
+    <h1 class="text-center"> Search for a city</h1>
+    <br>
+    <form action="{% url 'weather_page' %}" class="form-inline" method="POST" name="searchFormID">
+        {% csrf_token %}
+            <div class="input-group input-group-lg  ">
+    
+                    <input type="text" class="form-control" size="100"  placeholder="eg: New York"  name="city"  required>
+                    
+                <div class="input-group-append ">
+                  <button class="btn btn-outline-warning  " type="submit">Search</button>
+                </div>
+
+              </div>
+    </form>
+    
+    <small id="hide" style="margin-left: 3%;">{{message}}</small>
+    
+  </div>
+  <div class="container">
+    {% block weather %}
+    {% endblock weather %}
+</div>
+
+{% endblock content %}
+
+
+
+
+
+

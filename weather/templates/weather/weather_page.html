@@ -1,0 +1,161 @@
+{% extends "weather/home.html" %}
+{% load static %}
+
+{% block weather %}
+
+
+
+ <!------- CURRENT WEATHER------>
+<div class="row ">
+    <div class=" text-white text-center col-12 col-md-3 mr-md-2 mb-2 mb-md-0 " style="background:rgba(0,0,0, 0.8); border-radius: 15px; padding: 0%">
+        <nav class="navbar  justify-content-center"  style="background:rgba(0,0,0, 1.5); border-radius: 15px 15px 0px 0px">Current</nav>
+    
+        {% if data %}     
+           <div class="container" >
+            <img  src="{% static 'weather/conditions/' %}{{data.code}}{{data.timecode}}.svg" class="img-responsive" alt="" width="50%" height=auto>
+           </div>
+           <h1>{{data.temperature}} &deg;C</h1>
+            <h6>{{data.description}}</h6>
+            
+        {% endif %} 
+    </div>
+
+    
+
+
+
+    <!---forecast title bar -->
+    <div class="text-white text-center col " style="background:rgba(0,0,0, 0.8); padding:0 ;border-radius: 15px">
+        
+        <nav class="navbar  justify-content-center"  style="background:rgba(0,0,0, 1.5); border-radius: 15px 15px 0px 0px; margin-bottom: 2%;">Forecast for {{data.name}}, {{data.country}}</nav>
+        
+       
+
+         <!------- WEATHER FOR 4 DAYS------>
+        {% if data2 %}
+        <div class="">
+       
+          <div class="row ">
+            <!--------------- weather for tomorrow / day_1----------------->
+            <div class="col-6 col-md-3" >
+                <h5>Tomorrow</h5>
+                <!--weather graphic-->
+                <div class="container" style="margin-bottom: 6%;">
+                    <img  src="{% static 'weather/conditions/' %}{{data2.day1_code}}d.svg" class="img-responsive" alt="" width="58%" height=auto>
+                   </div>
+                   
+                   <!--weather info-->
+
+                   <h4>{{data2.day1_temperature}}&deg;</h4><!--Daytime temperature-->
+                   
+                    <div class="font-weight-lighter">
+                        
+                        <p class="font-weight-bold" style="margin-bottom: 0;"> {{data2.day1_max}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data2.day1_min}} </p ><!-- hi and low temperatures -->
+                            <small>P.O.P &nbsp; {{data2.day1_pop}}%</small> <!--chance of precipitation-->
+                        {% if data2.day1_precipitation %}
+                            <p><small>{{data2.day1_precipitation}} mm</small></p><!-- milimeters of precipitation----->
+                        {% else %}
+                            <hr>
+                        {% endif %}
+                    </div>
+            </div>
+        
+            <!------------ weather for day after / day_2----------------->
+
+            <div class="col-6 col-md-3" >
+                <h5>{{data2.day2_name}}</h5>
+                <!--weather graphic-->
+                <div class="container" style="margin-bottom: 6%;">
+                    <img  src="{% static 'weather/conditions/' %}{{data2.day2_code}}d.svg" class="img-responsive" alt="" width="58%" height=auto>
+                   </div>
+                   
+                   <!--weather info-->
+
+                   <h4>{{data2.day2_temperature}}&deg;</h4><!--Daytime temperature-->
+                   
+                    <div class="font-weight-lighter">
+                        
+                        <p class="font-weight-bold" style="margin-bottom: 0;"> {{data2.day2_max}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data2.day2_min}} </p ><!-- hi and low temperatures -->
+                            <small>P.O.P &nbsp; {{data2.day2_pop}}%</small> <!--chance of precipitation-->
+                        {% if data2.day2_precipitation %}
+                            <p><small>{{data2.day2_precipitation}} mm</small></p><!-- millimeters of precipitation----->
+                        {% else %}
+                            <hr>
+                        {% endif %}
+                    </div>
+
+            </div>
+            <!------------ weather for 2 days later / day_3----------------->
+              
+            <div class="col-6 col-md-3" >
+                <h5>{{data2.day3_name}}</h5>
+                <!--weather graphic-->
+                <div class="container" style="margin-bottom: 6%;">
+                    <img  src="{% static 'weather/conditions/' %}{{data2.day3_code}}d.svg" class="img-responsive" alt="" width="58%" height=auto>
+                </div>
+                
+                <!--weather info-->
+
+                <h4>{{data2.day3_temperature}}&deg;</h4><!--Daytime temperature-->
+                
+                    <div class="font-weight-lighter">
+                        
+                        <p class="font-weight-bold" style="margin-bottom: 0;"> {{data2.day3_max}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data2.day3_min}} </p ><!-- hi and low temperatures -->
+                            <small>P.O.P &nbsp; {{data2.day3_pop}}%</small> <!--chance of precipitation-->
+                        {% if data2.day3_precipitation %}
+                            <p><small>{{data2.day3_precipitation}} mm</small></p><!-- millimeters of precipitation----->
+                        {% else %}
+                            <hr>
+                        {% endif %}
+                    </div>
+
+            </div>
+
+              
+              
+            <!------------ weather for 3 days later / day_4----------------->
+            <div class="col-6 col-md-3" >
+                <h5>{{data2.day4_name}}</h5>
+                <!--weather graphic-->
+                <div class="container" style="margin-bottom: 6%;">
+                    <img  src="{% static 'weather/conditions/' %}{{data2.day4_code}}d.svg" class="img-responsive" alt="" width="58%" height=auto>
+                </div>
+                
+                <!--weather info-->
+
+                <h4>{{data2.day4_temperature}}&deg;</h4><!--Daytime temperature-->
+                
+                    <div class="font-weight-lighter">
+                        
+                        <p class="font-weight-bold" style="margin-bottom: 0;"> {{data2.day4_max}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data2.day4_min}} </p ><!-- hi and low temperatures -->
+                            <small>P.O.P &nbsp; {{data2.day4_pop}}%</small> <!--chance of precipitation-->
+                        {% if data2.day4_precipitation %}
+                            <p><small>{{data2.day4_precipitation}} mm</small></p><!-- millimeters of precipitation----->
+                        {% else %}
+                            <hr>
+                        {% endif %}
+                    </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+          {% endif %}
+
+          <!---- temporary-------------->
+          
+         
+
+           
+        
+     </div>
+        
+</div>
+ 
+
+<hr>
+
+
+{% endblock weather %}
